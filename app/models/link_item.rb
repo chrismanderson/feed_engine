@@ -1,4 +1,5 @@
 class LinkItem < ActiveRecord::Base
+  include StreamStore
   attr_accessible :comment, :url, :user_id
   belongs_to :user
 
@@ -6,4 +7,6 @@ class LinkItem < ActiveRecord::Base
   validates_length_of :url, :maximum => 2048
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_length_of :comment, :maximum => 256
+
+  after_create :update_stream
 end
