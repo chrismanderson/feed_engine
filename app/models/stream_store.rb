@@ -4,9 +4,9 @@ module StreamStore
       "#{self.class.name}:#{self.id}"
   end
 
-  def stream_items(index = 0, count = -1)
+  def stream_items(start = 0, finish = -1)
     # We can improve performance here by batching the queries
-    REDIS.zrevrange("stream:user:#{self.id}", index, count).collect do |item|
+    REDIS.zrevrange("stream:user:#{self.id}", start, finish).collect do |item|
       query = item.gsub(":", ".find ")
       eval query 
     end
