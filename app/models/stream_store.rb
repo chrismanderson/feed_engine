@@ -11,4 +11,8 @@ module StreamStore
       eval query 
     end
   end
+
+  def continue_stream?(start)
+    REDIS.zrevrange("stream:user:#{self.id}", start, start + 1).count > 0
+  end
 end
