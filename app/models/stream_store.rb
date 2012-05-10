@@ -12,6 +12,7 @@ module StreamStore
     end
   end
 
+  # Returns true if the stream has more items starting at the specified index.
   def continue_stream?(start)
     REDIS.zrevrange("stream:user:#{self.id}", start, start + 1).count > 0
   end
