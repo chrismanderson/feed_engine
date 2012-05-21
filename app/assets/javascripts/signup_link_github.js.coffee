@@ -1,3 +1,20 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$('.provider').hover(function(event){
+  var titleText = $(this).attr('title');
+  $(this)
+  .data('tipText', titleText)
+  .removeAttr('title'); 
+
+  $('<p class="tooltip"></p>')
+  .text(titleTextt)
+  .appendTo('body')
+  .css('top' (event.pageY-10) + 'px')
+  .css('left', (event.pageX + 20) + 'px')
+  .fadeIn('slow');
+}, function() { 
+  $(this).attr('title', $(this).data('tipText'))
+  $('.tooltip').remove();
+}).mousemove(function(event) { 
+  $('.tooltip')
+    .css('top', (event.pageY-10) + 'px')
+    .css('left', (event.pageX +20) + 'px')
+});
