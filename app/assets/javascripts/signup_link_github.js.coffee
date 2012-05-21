@@ -5,7 +5,7 @@ $('.provider').hover(function(event){
   .removeAttr('title'); 
 
   $('<p class="tooltip"></p>')
-  .text(titleTextt)
+  .text(titleText)
   .appendTo('body')
   .css('top' (event.pageY-10) + 'px')
   .css('left', (event.pageX + 20) + 'px')
