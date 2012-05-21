@@ -2,8 +2,12 @@
 <h2>Change your password</h2>
 <h4><%= current_user.email %></h4>
 <br/>
+<div class="editable">
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-
+  <div id="edit_in_place">
+    <%= f.input :email, :label_html => {:class => "text-item-label"}, 
+                :input_html => {:class => "dashboard-email-field"} %>
+  </div> 
   <%= f.input :current_password, :label_html => {:class => "text-item-label"}, 
               :input_html => {:class => "dashboard-password-field"} %>
   <%= f.input :password, :label_html => {:class => "text-item-label"}, 
@@ -11,6 +15,7 @@
   <%= f.input :password_confirmation, :label_html => {:class => "text-item-label"}, 
               :input_html => {:class => "dashboard-password-field"} %>
 
-  <%= f.button :submit, "Update", :class => "btn btn-primary btn-large password-submit"  %>
+  <%= f.button :submit, "Update", :class => "btn btn-primary btn-large password-submit" %>
+  </div> 
 <% end %>
 </div>
