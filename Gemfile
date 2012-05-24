@@ -31,6 +31,9 @@ gem 'omniauth-instagram'
 gem 'faraday', "~>0.7.6"
 gem 'newrelic_rpm'
 gem 'devise-async'
+gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
+"ripper_ruby_parser-2"
+gem 'cane', :git => "git://github.com/square/cane.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
