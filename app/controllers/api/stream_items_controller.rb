@@ -7,7 +7,8 @@ class Api::StreamItemsController < Api::BaseController
   end
 
   def create
-    @item = StreamItem.new_stream_item_from_json(@user.id, JSON.parse(params[:body]))
+    @item = StreamItem.new_stream_item_from_json(@user.id,
+            JSON.parse(params[:body]))
     if @item.save
       respond_with(@item, :status => :created,
                           :location => api_item_path(@user, @item))
@@ -18,6 +19,8 @@ class Api::StreamItemsController < Api::BaseController
 
   def recent
     @user = User.find_by_display_name(params[:display_name])
-    @stream_items = @user.stream_items.includes(:user, :streamable).where(:refeed => false).where("id > ?", params[:id].to_i)
+    @stream_items = @user.stream_items.includes(:user, :streamable).
+                    where(:refeed => false).
+                    where("id > ?", params[:id].to_i)
   end
 end

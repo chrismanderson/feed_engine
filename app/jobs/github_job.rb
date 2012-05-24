@@ -18,10 +18,13 @@ class GithubJob
     auth = user.authentications.find_by_provider("github")
 
     events =  client.user_events(login).select do |event|
-      DateTime.parse(event.created_at) > auth.created_at && user.github_items.find_by_event_id(event.id).nil?
+      DateTime.parse(event.created_at) >
+        auth.created_at &&
+        user.github_items.find_by_event_id(event.id).nil?
     end
 
-    troutr = Troutr::Client.new(:token => user.authentication_token, :url => TROUTR_API_URL)
+    troutr = Troutr::Client.new(:token => user.authentication_token,
+                                :url => TROUTR_API_URL)
 
     events.reverse.each do |event|
       troutr.create_github_item(user.display_name, JSON.dump(event))

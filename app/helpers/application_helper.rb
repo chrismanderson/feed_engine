@@ -3,15 +3,15 @@ module ApplicationHelper
     Gravatar.new(user.email).image_url
   end
 
-  def github_connected?(user)
+  def github?(user)
     service_connected(user, "github")
   end
 
-  def twitter_connected?(user)
+  def twitter?(user)
     service_connected(user, "twitter")
   end
 
-  def instagram_connected?(user)
+  def instagram?(user)
     service_connected(user, "instagram")
   end
 
@@ -23,7 +23,7 @@ module ApplicationHelper
     if user.nil?
       false
     else
-      twitter_connected?(user) || github_connected?(user) || instagram_connected?(user)
+      twitter?(user) || github?(user) || instagram?(user)
     end
   end
 end

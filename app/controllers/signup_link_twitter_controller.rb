@@ -5,7 +5,7 @@ class SignupLinkTwitterController < ApplicationController
     session[:next_auth_path] = signup_link_github_path
   end
 
-  def skip 
+  def skip
     flash[:notice] = "You can link your Twitter account later!"
     redirect_to signup_link_github_path
   end

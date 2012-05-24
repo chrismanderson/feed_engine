@@ -10,10 +10,13 @@ class TwitterJob
 
     auth = user.authentications.find_by_provider("twitter")
 
-    troutr = Troutr::Client.new(:token => user.authentication_token, :url => TROUTR_API_URL)
+    troutr = Troutr::Client.new(:token => user.authentication_token,
+                                :url => TROUTR_API_URL)
 
     tweets = client.user_timeline(uid).select do |tweet|
-      tweet.created_at.utc > auth.created_at && user.twitter_items.find_by_status_id(tweet.attrs["id_str"]).nil?
+      tweet.created_at.utc >
+      auth.created_at &&
+      user.twitter_items.find_by_status_id(tweet.attrs["id_str"]).nil?
     end
     tweets.reverse.each do |tweet|
       troutr.create_twitter_item(user.display_name, JSON.dump(tweet.attrs))

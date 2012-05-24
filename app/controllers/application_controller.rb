@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       super
     end
   end
-  
+
   helper_method :resource, :resource_name, :river_stream_items, :river_items
 
   def resource
@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_and_add_points
-    point = Point.create(user: current_user, pointable_id: session[:point_for], pointable_type: session[:point_for_type])
+    point = Point.create(user: current_user,
+                 pointable_id: session[:point_for],
+               pointable_type: session[:point_for_type])
   end
 end
 

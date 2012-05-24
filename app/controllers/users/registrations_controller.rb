@@ -2,12 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include DashboardControllerHelper
   before_filter :create_feed_items, :only => [:update]
 
-  def update 
-    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+  def update
+    self.resource =
+      resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
 
     if resource.update_with_password(params[:user])
       if is_navigational_format?
-        if resource.respond_to?(:pending_reconfirmation?) && resource.pending_reconfirmation?
+        if resource.respond_to?(:pending_reconfirmation?) &&
+            resource.pending_reconfirmation?
           flash_key = :update_needs_confirmation
         end
         set_flash_message :notice, flash_key || :updated
@@ -27,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
   def after_sign_up_path_for(resource)
     signup_link_twitter_path
-  end  
+  end
 end
 
 

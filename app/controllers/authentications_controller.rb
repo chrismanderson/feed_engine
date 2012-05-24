@@ -5,15 +5,16 @@ class AuthenticationsController < ApplicationController
     token = auth["credentials"]["token"]
 
     if auth["credentials"]["secret"]
-      secret = auth["credentials"]["secret"] 
+      secret = auth["credentials"]["secret"]
     end
     if auth["extra"]["raw_info"]
-      login = auth["extra"]["raw_info"]["login"] 
+      login = auth["extra"]["raw_info"]["login"]
     end
 
     provider = auth[:provider]
-    authentication = current_user.authentications.build(:provider => provider, :uid => uid, 
-     :token => token, :secret => secret, :login => login)
+    authentication = current_user.authentications.build(:provider => provider,
+                     :uid => uid,
+                     :token => token, :secret => secret, :login => login)
     if current_user.save
       flash[:notice] = "Authentication successful."
     else

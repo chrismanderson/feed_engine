@@ -1,5 +1,6 @@
 module SignupLinkInstagramHelper
+  SEARCH_STRING = "user_id = ? and provider = ?"
   def instagram_connected?(user)
-    Authentication.where("user_id = ? and provider = ?", user.id, "instagram").any?
+    Authentication.where(SEARCH_STRING, user.id, "instagram").any?
   end
 end

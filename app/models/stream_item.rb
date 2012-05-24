@@ -12,7 +12,9 @@ class StreamItem < ActiveRecord::Base
   end
 
   def uniqueness_of_author
-    if StreamItem.where(:streamable_type => self.streamable_type).where(:streamable_id => self.streamable_id).where(:refeed => false).any? && self.refeed == false
+    if StreamItem.where(:streamable_type => self.streamable_type).
+                  where(:streamable_id => self.streamable_id).
+                  where(:refeed => false).any? && self.refeed == false
       errors.add(:refeed, "Can't have multiple original stream items")
     end
   end
