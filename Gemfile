@@ -18,7 +18,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'debugger'
 gem 'omniauth-github'
-gem 'twitter'
+gem 'twitter', :git => "git://github.com/sferik/twitter.git" 
 gem "ember-rails"
 gem 'jbuilder'
 gem 'growl'
@@ -28,7 +28,7 @@ gem 'instagram', :git => 'git://github.com/rewritten/instagram-ruby-gem.git'
 gem 'coffeebeans'
 gem 'pusher'
 gem 'omniauth-instagram'
-gem 'faraday', "~>0.7.6"
+gem 'faraday'
 gem 'newrelic_rpm'
 gem 'devise-async'
 
